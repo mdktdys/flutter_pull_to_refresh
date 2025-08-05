@@ -4,16 +4,18 @@
     createTime:2018-05-01 11:39
 */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:pull_to_refresh/src/internals/slivers.dart';
-import 'internals/indicator_wrap.dart';
-import 'internals/refresh_physics.dart';
+
 import 'indicator/classic_indicator.dart';
 import 'indicator/material_indicator.dart';
+import 'internals/indicator_wrap.dart';
+import 'internals/refresh_physics.dart';
 
 // ignore_for_file: INVALID_USE_OF_PROTECTED_MEMBER
 // ignore_for_file: INVALID_USE_OF_VISIBLE_FOR_TESTING_MEMBER
@@ -281,12 +283,12 @@ class SmartRefresherState extends State<SmartRefresher> {
   double viewportExtent = 0;
   bool _canDrag = true;
 
-  final RefreshIndicator defaultHeader =
+  RefreshIndicator get defaultHeader =>
       defaultTargetPlatform == TargetPlatform.iOS
           ? ClassicHeader()
           : MaterialClassicHeader();
 
-  final LoadIndicator defaultFooter = ClassicFooter();
+  LoadIndicator get defaultFooter => ClassicFooter();
 
   //build slivers from child Widget
   List<Widget>? _buildSliversByChild(BuildContext context, Widget? child,

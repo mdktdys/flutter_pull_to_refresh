@@ -4,14 +4,15 @@
  *   createTime:2018-05-14 17:39
  */
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     hide RefreshIndicator, RefreshIndicatorState;
 import 'package:flutter/widgets.dart';
+
 import '../../pull_to_refresh.dart';
 import '../internals/indicator_wrap.dart';
 import '../smart_refresher.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 
 /// direction that icon should place to the text
 enum IconPosition { left, right, top, bottom }
@@ -56,14 +57,15 @@ class ClassicHeader extends RefreshIndicator {
   final IconPosition iconPos;
 
   final TextStyle textStyle;
+  final EdgeInsets padding;
 
   const ClassicHeader({
     Key? key,
-    RefreshStyle refreshStyle: RefreshStyle.Follow,
-    double height: 60.0,
-    Duration completeDuration: const Duration(milliseconds: 600),
+    RefreshStyle refreshStyle = RefreshStyle.Follow,
+    double height = 60.0,
+    Duration completeDuration = const Duration(milliseconds: 600),
     this.outerBuilder,
-    this.textStyle: const TextStyle(color: Colors.grey),
+    this.textStyle = const TextStyle(color: Colors.grey),
     this.releaseText,
     this.refreshingText,
     this.canTwoLevelIcon,
@@ -72,11 +74,12 @@ class ClassicHeader extends RefreshIndicator {
     this.completeText,
     this.failedText,
     this.idleText,
-    this.iconPos: IconPosition.left,
-    this.spacing: 15.0,
+    this.iconPos = IconPosition.left,
+    this.spacing = 15.0,
     this.refreshingIcon,
-    this.failedIcon: const Icon(Icons.error, color: Colors.grey),
-    this.completeIcon: const Icon(Icons.done, color: Colors.grey),
+    this.padding = EdgeInsets.zero,
+    this.failedIcon = const Icon(Icons.error, color: Colors.grey),
+    this.completeIcon = const Icon(Icons.done, color: Colors.grey),
     this.idleIcon = const Icon(Icons.arrow_downward, color: Colors.grey),
     this.releaseIcon = const Icon(Icons.refresh, color: Colors.grey),
   }) : super(
@@ -175,6 +178,7 @@ class _ClassicHeaderState extends RefreshIndicatorState<ClassicHeader> {
     return widget.outerBuilder != null
         ? widget.outerBuilder!(container)
         : Container(
+            padding: widget.padding,
             child: Center(child: container),
             height: widget.height,
           );
@@ -217,22 +221,22 @@ class ClassicFooter extends LoadIndicator {
   const ClassicFooter({
     Key? key,
     VoidCallback? onClick,
-    LoadStyle loadStyle: LoadStyle.ShowAlways,
-    double height: 60.0,
+    LoadStyle loadStyle = LoadStyle.ShowAlways,
+    double height = 60.0,
     this.outerBuilder,
-    this.textStyle: const TextStyle(color: Colors.grey),
+    this.textStyle = const TextStyle(color: Colors.grey),
     this.loadingText,
     this.noDataText,
     this.noMoreIcon,
     this.idleText,
     this.failedText,
     this.canLoadingText,
-    this.failedIcon: const Icon(Icons.error, color: Colors.grey),
-    this.iconPos: IconPosition.left,
-    this.spacing: 15.0,
-    this.completeDuration: const Duration(milliseconds: 300),
+    this.failedIcon = const Icon(Icons.error, color: Colors.grey),
+    this.iconPos = IconPosition.left,
+    this.spacing = 15.0,
+    this.completeDuration = const Duration(milliseconds: 300),
     this.loadingIcon,
-    this.canLoadingIcon: const Icon(Icons.autorenew, color: Colors.grey),
+    this.canLoadingIcon = const Icon(Icons.autorenew, color: Colors.grey),
     this.idleIcon = const Icon(Icons.arrow_upward, color: Colors.grey),
   }) : super(
           key: key,
