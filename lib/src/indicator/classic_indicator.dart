@@ -218,6 +218,7 @@ class ClassicFooter extends LoadIndicator {
   /// notice that ,this attrs only works for LoadStyle.ShowWhenLoading
   final Duration completeDuration;
   final EdgeInsets padding;
+  final EdgeInsets margin;
 
   const ClassicFooter({
     Key? key,
@@ -238,6 +239,7 @@ class ClassicFooter extends LoadIndicator {
     this.completeDuration = const Duration(milliseconds: 300),
     this.loadingIcon,
     this.padding = EdgeInsets.zero,
+    this.margin = EdgeInsets.zero,
     this.canLoadingIcon = const Icon(Icons.autorenew, color: Colors.grey),
     this.idleIcon = const Icon(Icons.arrow_upward, color: Colors.grey),
   }) : super(
@@ -326,6 +328,7 @@ class _ClassicFooterState extends LoadIndicatorState<ClassicFooter> {
         : Container(
             height: widget.height,
             padding: widget.padding,
+            margin: widget.margin,
             child: Center(
               child: container,
             ),
